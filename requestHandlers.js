@@ -46,14 +46,13 @@ function upload(response, request) {
       if (err) {
         fs.unlink("tmp/test.png");
         fs.rename(files.upload.path, "tmp/test.png");
-        );
       }
     });
 
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("received image:<br/>");
-  response.write("<image src='/show' />");
-  response.end();
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("received image:<br/>");
+    response.write("<image src='/show' />");
+    response.end();
   });
 }
 
