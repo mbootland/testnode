@@ -15,7 +15,7 @@ function start(response){
     '<body>'+
     '<form action="/upload" enctype="multipart/form-data" '+
     'method="post">'+
-    '<input type="file" name="Upload" multiple="multiple">'+
+    '<input type="file" name="upload" multiple="multiple" />'+
     '<input type="submit" value="Upload file" />'+
     '</form>'+
     '</body>'+
@@ -42,11 +42,10 @@ function upload(response, request) {
   form.parse(request, function(error, fields, files)
   {
     console.log("parsing done");
-
-    fs.rename(files.upload.path, "tmp/test.png", function(err) {
+    fs.rename(files.upload.path, "/tmp/test.gif", function(err) {
       if (err) {
-        fs.unlink("tmp/test.png");
-        fs.rename(files.upload.path, "tmp/test.png");
+        fs.unlink("/tmp/test.gif");
+        fs.rename(files.upload.path, "/tmp/test.gif");
       }
     });
 
@@ -59,13 +58,13 @@ function upload(response, request) {
 
 function show(response) {
   console.log("Requests handler 'show' was called.");
-  fs.readFile("tmp/test.png", "binary", function(error, file) {
+  fs.readFile("/tmp/test.gif", "binary", function(error, file) {
     if(error) {
       response.writeHead(500, {"Content-Type": "text/plain"});
       response.write(error + "\n");
       response.end();
     } else {
-      response.writeHead(200, {"Content-Type": "image/png"});
+      response.writeHead(200, {"Content-Type": "image/gif"});
       response.write(file, "binary");
       response.end();
     }
