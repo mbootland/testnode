@@ -15,6 +15,7 @@ function start(response){
     '<body>'+
     '<form action="/upload" enctype="multipart/form-data" '+
     'method="post">'+
+    '<input type="file" name="Upload" multiple="multiple">'+
     '<input type="submit" value="Upload file" />'+
     '</form>'+
     '</body>'+
